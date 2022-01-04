@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:id="@+id/emoji_potential_hazard"
+        android:id="@+id/list_emoji_potential_hazard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -18,7 +18,7 @@
         tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
 
     <TextView
-        android:id="@+id/code_name"
+        android:id="@+id/list_code_name"
         style="@style/TextAppearance.List"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         tools:text="Code Name" />
 
     <TextView
-        android:id="@+id/close_approach_date"
+        android:id="@+id/list_close_approach_date"
         style="@style/TextAppearance.List"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,6 +37,6 @@
         android:layout_marginTop="16dp"
         android:paddingBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/code_name"
+        app:layout_constraintTop_toBottomOf="@+id/list_code_name"
         tools:text="06-09-2069" />
 </androidx.constraintlayout.widget.ConstraintLayout>
