@@ -33,6 +33,12 @@ class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.AsteroidsViewHolder
 
         holder.codename.text = item.codename
         holder.closeApproachDate.text = item.closeApproachDate
+        holder.emojiPotentiallyHazardous
+            .setImageResource(
+                if (item.isPotentiallyHazardous) R.drawable.ic_status_potentially_hazardous
+                else R.drawable.ic_status_normal
+            )
+
     }
 
     /** RecyclerView calls this method whenever it needs to create a new ViewHolder.
@@ -46,9 +52,10 @@ class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.AsteroidsViewHolder
         return AsteroidsViewHolder(view)
     }
 
+    /** binds the views in the holder with xml file **/
     class AsteroidsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val codename: TextView = itemView.findViewById(R.id.list_code_name)
         val closeApproachDate: TextView = itemView.findViewById(R.id.list_close_approach_date)
-        val isPotentiallyHazardous: ImageView = itemView.findViewById(R.id.list_emoji_potential_hazard)
+        val emojiPotentiallyHazardous: ImageView = itemView.findViewById(R.id.list_emoji_potential_hazard)
     }
 }
