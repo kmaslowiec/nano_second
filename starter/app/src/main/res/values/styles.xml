@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+<style name="TextAppearance.List" parent="TextAppearance.AppCompat.Headline">
+    <item name="android:textColor">@color/default_text_color</item>
+</style>
 </resources>
