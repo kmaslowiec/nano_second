@@ -25,7 +25,9 @@ class MainFragment : Fragment() {
         viewModel.addAsteroids()
 
         viewModel.getAsteroids.observe(viewLifecycleOwner, {
-            adapter.data = it
+            //adapter.data = it
+            /** With DiffUtil **/
+            adapter.submitList(it)
         })
 
         setHasOptionsMenu(true)
