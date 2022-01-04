@@ -22,6 +22,11 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         val adapter = AsteroidAdapter()
         binding.asteroidRecycler.adapter = adapter
+        viewModel.addAsteroids()
+
+        viewModel.getAsteroids.observe(viewLifecycleOwner, {
+            adapter.data = it
+        })
 
         setHasOptionsMenu(true)
 

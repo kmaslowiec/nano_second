@@ -7,4 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Asteroid(val id: Long, val codename: String, val closeApproachDate: String,
                     val absoluteMagnitude: Double, val estimatedDiameter: Double,
                     val relativeVelocity: Double, val distanceFromEarth: Double,
-                    val isPotentiallyHazardous: Boolean) : Parcelable
+                    val isPotentiallyHazardous: Boolean) : Parcelable{
+                        constructor(id: Long, codename: String ) : this(id, codename, "666", 69.9,
+                            96.6,6.5, 29.9, true)
+}
