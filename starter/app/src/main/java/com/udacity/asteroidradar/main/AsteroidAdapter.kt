@@ -11,7 +11,7 @@ import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.ListItemAsteroidsBinding
 
-class AsteroidAdapter : ListAdapter<Asteroid, AsteroidAdapter.AsteroidsViewHolder>(AndroidsDiffCallback()) {
+class AsteroidAdapter(val clickListener: AsteroidListener) : ListAdapter<Asteroid, AsteroidAdapter.AsteroidsViewHolder>(AndroidsDiffCallback()) {
 
     /** We de not need to init the data and use notifyDataSetChanged if we use DiffUtil
      * Highly Recommended !!!
@@ -36,6 +36,8 @@ class AsteroidAdapter : ListAdapter<Asteroid, AsteroidAdapter.AsteroidsViewHolde
         /** Needed to get resources e.g. Strings, Colors etc.**/
         //val res = holder.itemView.context.resources
 
+        holder.bin(clickListener, item)
+
         holder.codename.text = item.codename
         holder.closeApproachDate.text = item.closeApproachDate
         holder.emojiPotentiallyHazardous
@@ -50,18 +52,30 @@ class AsteroidAdapter : ListAdapter<Asteroid, AsteroidAdapter.AsteroidsViewHolde
      * The method creates and initializes the ViewHolder and its associated View, but does not fill
      * in the view's contents—the ViewHolder has not yet been bound to specific data **/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidsViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ListItemAsteroidsBinding
-            .inflate(layoutInflater, parent, false)
-
-        return AsteroidsViewHolder(binding)
+        return AsteroidsViewHolder.from(parent)
     }
 
     /** binds the views in the holder with xml file **/
-    class AsteroidsViewHolder(binding: ListItemAsteroidsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AsteroidsViewHolder private constructor(val binding: ListItemAsteroidsBinding) : RecyclerView.ViewHolder(binding.root) {
         val codename: TextView = binding.listCodeName
         val closeApproachDate: TextView = binding.listCloseApproachDate
         val emojiPotentiallyHazardous: ImageView = binding.listEmojiPotentialHazard
+
+        fun bin(clickListener: AsteroidListener, item: Asteroid) {
+            binding.asteroid = item
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): AsteroidsViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListItemAsteroidsBinding
+                    .inflate(layoutInflater, parent, false)
+
+                return AsteroidsViewHolder(binding)
+            }
+        }
     }
 
     /**
@@ -78,5 +92,10 @@ class AsteroidAdapter : ListAdapter<Asteroid, AsteroidAdapter.AsteroidsViewHolde
         override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
             return oldItem == newItem
         }
+    }
+
+    /**Click Listener **/
+    class AsteroidListener(val clickListener: (id: Long) -> Unit) {
+        fun onClick(asteroid: Asteroid) = clickListener(asteroid.id)
     }
 }
