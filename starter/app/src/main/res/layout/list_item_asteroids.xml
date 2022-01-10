@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
-
         <variable
             name="clickListener"
             type="com.udacity.asteroidradar.main.AsteroidAdapter.AsteroidListener" />
@@ -29,6 +27,7 @@
             android:contentDescription="@string/emoji_potential_hazard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:statusIcon="@{asteroid.potentiallyHazardous}"
             tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
 
         <TextView
@@ -40,6 +39,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:text="@{asteroid.codename}"
             tools:text="Code Name" />
 
         <TextView
@@ -52,6 +52,7 @@
             android:paddingBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/list_code_name"
+            android:text="@{asteroid.closeApproachDate}"
             tools:text="06-09-2069" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

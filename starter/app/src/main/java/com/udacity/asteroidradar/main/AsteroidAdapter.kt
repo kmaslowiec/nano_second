@@ -2,13 +2,10 @@ package com.udacity.asteroidradar.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.ListItemAsteroidsBinding
 
 class AsteroidAdapter(val clickListener: AsteroidListener) : ListAdapter<Asteroid, AsteroidAdapter.AsteroidsViewHolder>(AndroidsDiffCallback()) {
@@ -37,14 +34,14 @@ class AsteroidAdapter(val clickListener: AsteroidListener) : ListAdapter<Asteroi
         //val res = holder.itemView.context.resources
 
         holder.bin(clickListener, item)
-
+/*
         holder.codename.text = item.codename
         holder.closeApproachDate.text = item.closeApproachDate
-        holder.emojiPotentiallyHazardous
+ *//*       holder.emojiPotentiallyHazardous
             .setImageResource(
                 if (item.isPotentiallyHazardous) R.drawable.ic_status_potentially_hazardous
                 else R.drawable.ic_status_normal
-            )
+            )*/
 
     }
 
@@ -57,9 +54,9 @@ class AsteroidAdapter(val clickListener: AsteroidListener) : ListAdapter<Asteroi
 
     /** binds the views in the holder with xml file **/
     class AsteroidsViewHolder private constructor(val binding: ListItemAsteroidsBinding) : RecyclerView.ViewHolder(binding.root) {
-        val codename: TextView = binding.listCodeName
+/*        val codename: TextView = binding.listCodeName
         val closeApproachDate: TextView = binding.listCloseApproachDate
-        val emojiPotentiallyHazardous: ImageView = binding.listEmojiPotentialHazard
+        val emojiPotentiallyHazardous: ImageView = binding.listEmojiPotentialHazard*/
 
         fun bin(clickListener: AsteroidListener, item: Asteroid) {
             binding.asteroid = item
